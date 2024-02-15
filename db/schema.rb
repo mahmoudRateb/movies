@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_15_143307) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_15_144004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_15_143307) do
     t.datetime "updated_at", null: false
     t.index ["director_id"], name: "index_movies_on_director_id"
     t.index ["location_id"], name: "index_movies_on_location_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "jobs", "actors"
