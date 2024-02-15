@@ -3,7 +3,7 @@ class ActorsController < ApplicationController
 
   # GET /actors or /actors.json
   def index
-    @actors = Actor.all
+    @actors = Actor.search(params[:search])
   end
 
   # GET /actors/1 or /actors/1.json
@@ -65,6 +65,6 @@ class ActorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def actor_params
-      params.require(:actor).permit(:name)
+      params.require(:actor).permit(:name, :search)
     end
 end
