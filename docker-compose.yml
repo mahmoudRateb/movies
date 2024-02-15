@@ -3,6 +3,10 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: myappdb
+      POSTGRES_USER: my_user
+      POSTGRES_PASSWORD: ILoveDoingKnowBe4Training!
   web:
     build: .
     ports:
@@ -10,3 +14,10 @@ services:
     volumes:
       - .:/usr/src/app
     command: rails s -b 0.0.0.0
+    environment:
+      DB_HOST: db
+      DB_NAME: myappdb
+      DB_USERNAME: my_user
+      DB_PASSWORD: ILoveDoingKnowBe4Training!
+    depends_on:
+      - db
