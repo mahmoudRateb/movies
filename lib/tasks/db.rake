@@ -26,10 +26,13 @@ namespace :db do
       movie_name = row[0]
       movie_description = row[1]
       movie_year = row[2]
-      movie = Movie.find_or_create_by(name: movie_name, description: movie_description, year: movie_year, location: location, director: director)
+      movie = Movie.find_or_create_by(name: movie_name, description: movie_description, year: movie_year, director: director)
 
       puts "Importing movie actors..."
       Job.find_or_create_by(movie: movie, actor: actor)
+
+      puts "Importing movie locations..."
+      MovieLocation.find_or_create_by(movie: movie, location: location)
     end
   end
 

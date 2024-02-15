@@ -20,8 +20,19 @@
   </p>
 
   <p>
-    <strong>Location:</strong>
-    <%= movie.location&.name %>
+    <strong>Locations:</strong>
+    <% movie.locations.each do |location|%>
+      <%= location&.name %>
+      <br/>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Actors:</strong>
+    <% movie.actors&.each do |actor|%>
+      <%= actor&.name %>
+      <br/>
+    <% end %>
   </p>
 
 </div>
