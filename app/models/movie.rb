@@ -6,7 +6,7 @@ class Movie < ApplicationRecord
   has_many :locations, through: :movie_locations
   has_many :reviews
 
-  def average_rating
-    reviews.average(:stars)
+  def update_rating
+    update(average_rating: reviews.average(:stars))
   end
 end
