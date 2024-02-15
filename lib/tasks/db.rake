@@ -33,7 +33,23 @@ namespace :db do
     end
   end
 
-  desc "TODO"
+  desc "Importing content from reviews.csv into the database"
   task import_reviews: :environment do
+    csv_content = CSV.read('reviews.csv')
+    csv_content.shift
+    csv_content.each do |row|
+      puts "Importing user #{row[1]}..."
+      user_field = row[-2]
+      user = User.find_or_create_by(name: user_field)
+
+      puts "Importing movie #{row[0]}..."
+      movie_field = row[0]
+      movie = Movie.find_or_create_by(name: movie_field)
+
+      puts "Importing review info..."
+      review_field = row[-1]
+      stars_field = row[-2]
+      Review.find_or_create_by(review: review_field, stars: stars_field, user: user, movie: movie)
+    end
   end
 end
