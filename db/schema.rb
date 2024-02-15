@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_15_152847) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_15_153015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_15_152847) do
     t.index ["country_id"], name: "index_locations_on_country_id"
   end
 
+  create_table "movie_locations", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_movie_locations_on_location_id"
+    t.index ["movie_id"], name: "index_movie_locations_on_movie_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -79,6 +88,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_15_152847) do
   add_foreign_key "jobs", "actors"
   add_foreign_key "jobs", "movies"
   add_foreign_key "locations", "countries"
+  add_foreign_key "movie_locations", "locations"
+  add_foreign_key "movie_locations", "movies"
   add_foreign_key "movies", "directors"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
