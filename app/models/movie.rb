@@ -9,4 +9,8 @@ class Movie < ApplicationRecord
   def update_rating
     update(average_rating: reviews.average(:stars))
   end
+
+  def self.update_all_ratings
+    find_each(&:update_rating)
+  end
 end
