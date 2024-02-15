@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is working with Docker.
 
-Things you may want to cover:
+docker-compose up should build the dependencies and run the application
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- To run the necessary tasks (files are included in git repo and can be updated)
+1. rake db:import_movies
+2. rake db:import_reviews
